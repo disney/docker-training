@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Intro to Docker</title>
+
+		<meta name="description" content="Intro to Docker">
+		<meta name="author" content="Docker Inc, adapted by John Lewis">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/docker.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+		<div class="slides">
+
+<section>
+	<h1>Intro to Docker</h1>
+	<div>
+		<img src="docker-img/docker.png" style="width: 432px; height: 376px; max-height: none; max-width: none;"/>
+		<br/>
+	</div>
+	<div>
+		Thanks to Docker, Inc for the content in these slides.<br/>
+		<i>liberally borrowed</i> from <a href="http://www.slideshare.net/dotCloud">Docker Slideshare</a> materials.<br/>
+		Thanks to everyone at Docker, Inc!
+	</div>
+</section>
+
+<section>
+	<h2>Since it started in March 2013...</h2>
+	<ul>
+		<li class="fragment" data-fragment-index="0">&gt;200,000 pulls</li>
+		<li class="fragment" data-fragment-index="2">&gt;7,500 github stars</li>
+		<li class="fragment" data-fragment-index="3">&gt;200 significant contributors</li>
+		<li class="fragment" data-fragment-index="4">&gt;200 projects built on top of docker</li>
+		<ul>
+			<li class="fragment" data-fragment-index="4">UIs, mini-PaaS, Remote Desktop...</li>
+		</ul>
+		<li class="fragment" data-fragment-index="5">1000’s of Dockerized applications</li>
+		<ul>
+			<li class="fragment" data-fragment-index="5">Memcached, Redis, Node.js, Hadoop...</li>
+		</ul>
+		<li class="fragment" data-fragment-index="6">Integration in Jenkins, Travis, Chef, Puppet, Vagrant and OpenStack</li>
+		<li class="fragment" data-fragment-index="7">Meetups arranged around the world…</li>
+		<ul>
+			<li class="fragment" data-fragment-index="7">with organizations like Ebay, Cloudflare, Yandex, and Rackspace presenting on their use of Docker</li>
+		</ul>
+	</ul>
+</section>
+
+<section>
+	<h2>The Challenge</h2>
+	<p>
+		<img src="docker-img/the-challenge.png">
+	</p>
+</section>
+
+<section>
+	<h2>The Matrix from Hell</h2>
+	<p>
+		<img src="docker-img/the-matrix-from-hell.png">
+	</p>
+</section>
+
+<section>
+	<h2>Cargo Transport Pre-1960</h2>
+	<p>
+		<img src="docker-img/cargo-transport-pre-1960.png">
+	</p>
+</section>
+
+<section>
+	<h2>Also a Matrix from Hell</h2>
+	<p>
+		<img src="docker-img/also-a-matrix-from-hell.png">
+	</p>
+</section>
+
+<section>
+	<h2>Solution: Intermodal Shipping Container</h2>
+	<p>
+		<img src="docker-img/intermodal-shipping-container.png">
+	</p>
+</section>
+
+<section>
+	<h2>Docker is a Container System for Code</h2>
+	<p>
+		<img src="docker-img/shipping-container-for-code.png">
+	</p>
+</section>
+
+<section>
+	<h2>Docker Eliminates the Matrix from Hell</h2>
+	<p>
+		<img src="docker-img/eliminates-matrix-from-hell.png">
+	</p>
+</section>
+
+<section>
+	<h2>Why Developers Care</h2>
+	<div style="text-align: left;">
+		Build once... (finally) run <i><font color="#073763">anywhere<b>*</b></font></i>
+		<ul>
+			<li class="fragment" data-fragment-index="0">A clean, safe, hygienic, portable runtime environment for your app.</li>
+			<li class="fragment" data-fragment-index="1">No worries about missing dependencies, packages and other pain points during subsequent deployments.</li>
+			<li class="fragment" data-fragment-index="2">Run each app in its own isolated container, so you can run various versions of libraries and other dependencies for each app without worrying.</li>
+			<li class="fragment" data-fragment-index="3">Automate testing, integration, packaging...anything you can script.</li>
+			<li class="fragment" data-fragment-index="4">Reduce/eliminate concerns about compatibility on different platforms, either your own or your customers.</li>
+			<li class="fragment" data-fragment-index="5">Cheap, zero-penalty containers to deploy services. A VM without the overhead of a VM. Instant replay and reset of image snapshots.</li>
+		</ul>
+	</div>
+	<div style="text-align: center; font-size: 24px; line-height: 1.1em; ">
+		<i><font color="#073763">* Where "anywhere" means an x86 server running a modern Linux kernel<br/>
+			(3.2+ generally or 2.6.32+ for RHEL 6.5+,&nbsp;Fedora, &amp; related)</font></i>
+	</div>
+</section>
+
+<section>
+	<h2>Why Administrators Care</h2>
+	<div style="text-align: left;">
+	Configure once... run anything
+	<ul>
+		<li class="fragment" data-fragment-index="0">Make the entire lifecycle more efficient, consistent, and repeatable</li>
+		<li class="fragment" data-fragment-index="1">Increase the quality of code produced by developers.</li>
+		<li class="fragment" data-fragment-index="2">Eliminate inconsistencies between development, test, production, and customer environments.</li>
+		<li class="fragment" data-fragment-index="3">Support segregation of duties.</li>
+		<li class="fragment" data-fragment-index="4">Significantly improves the speed and reliability of continuous deployment and continuous integration systems.</li>
+		<li class="fragment" data-fragment-index="5">Because the containers are so lightweight, address significant performance, costs, deployment, and portability issues normally associated with VMs.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Why it Works: Separation of Concerns</h2>
+	<p>
+		<img src="docker-img/separation-of-concerns.png">
+	</p>
+</section>
+
+<section>
+	<h2>More Technical Details</h2>
+	<div style="position: absolute; left: 1%; top: 100px; width: 48%;" class="absolute-element">
+		<p><b>Why</b></p>
+		<ul style="text-align: left; line-height=1.1em;">
+			<li class="fragment" data-fragment-index="0">Run everywhere</li>
+			<ul style="font-size: 24px;" class="fragment" data-fragment-index="0">
+				<li>Regardless of kernel version</li>
+				<li>Regardless of host distro</li>
+				<li>Physical or virtual, cloud or not</li>
+				<li>Container and host architecture must match...</li>
+			</ul>
+			<li class="fragment" data-fragment-index="1">Run anything</li>
+			<ul style="font-size: 24px;" class="fragment" data-fragment-index="1">
+				<li>If it can run on the host, it can run in the container</li>
+				<li>If it can on a Linux kernel, it can run</li>
+			</ul>
+		</ul>
+	</div>
+	<div style="position: absolute; left: 52%; top: 100px; width: 48%;" class="absolute-element">
+		<p><b>What</b></p>
+		<ul style="text-align: left; line-height=1.1em;">
+			<li class="fragment" data-fragment-index="2">High level: a lightweight VM</li>
+			<ul style="font-size: 24px;" class="fragment" data-fragment-index="2">
+				<li>Own process space</li>
+				<li>Own network interface</li>
+				<li>Can run stuff as root</li>
+				<li>Can have its own /sbin/init (different from host)</li>
+				<li>&lt;&lt;machine container&gt;&gt;</li>
+			</ul>
+			<li class="fragment" data-fragment-index="3">Low level: chroot on steroids</li>
+			<ul style="font-size: 24px;" class="fragment" data-fragment-index="3">
+				<li>Can also <i>not </i>have its own /sbin/init</li>
+				<li>Container = isolated processes</li>
+				<li>Share kernel with host</li>
+				<liNo device emulation</li>
+				<li>&lt;&lt;application container&gt;&gt;</li>
+			</ul>
+		</ul>
+	</div>
+</section>
+
+<section>
+	<h2>VMs vs Containers</h2>
+	<p>
+		<img src="docker-img/containers-vs-vms.png">
+	</p>
+</section>
+
+<section>
+	<h2>Why are Docker Containers Lightweight?</h2>
+	<p>
+		<img src="docker-img/why-are-containers-lightwight.png">
+	</p>
+</section>
+
+<section>
+	<h2>What are the Basics of a Docker System?</h2>
+	<p>
+		<img src="docker-img/basics-of-docker-system.png">
+	</p>
+</section>
+
+<section>
+	<h2>Changes and Updates</h2>
+	<p>
+		<img src="docker-img/changes-and-updates.png">
+	</p>
+</section>
+
+<section>
+	<h1>Demo Time</h1>
+</section>
+
+<section>
+	<h2>Ecosystem Support</h2>
+	<font style="font-size: 28px; line-height: 1.1em; ">
+		<ul>
+			<li class="fragment" data-fragment-index="0">Operating systems</li>
+			<ul>
+				<li class="fragment" data-fragment-index="0">Virtually any distribution with a 2.6.32+ kernel</li>
+				<li class="fragment" data-fragment-index="0">Red Hat/Docker collaboration to make work across RHEL 6.4+, Fedora, and other members of the family (2.6.32 +)</li>
+				<li class="fragment" data-fragment-index="0">CoreOS—Small core OS purpose built with Docker</li>
+			</ul>
+			<li class="fragment" data-fragment-index="1">OpenStack</li>
+			<ul>
+				<li class="fragment" data-fragment-index="1">Docker integration into NOVA (&amp; compatibility with Glance, Horizon, etc.) accepted for Havana release</li>
+			</ul>
+			<li class="fragment" data-fragment-index="2">Private PaaS</li>
+			<ul>
+				<li data-fragment-index="2" class="fragment">OpenShift, Solum (Rackspace, OpenStack), Other TBA</li>
+			</ul>
+			<li class="fragment" data-fragment-index="3">Public PaaS</li>
+			<ul>
+				<li data-fragment-index="3" class="fragment">Deis, Voxoz, Cocaine (Yandex), Baidu PaaS</li>
+			</ul>
+			<li data-fragment-index="4" class="fragment">Public IaaS</li>
+			<ul>
+				<li data-fragment-index="4" class="fragment">Native support in Rackspace, Digital Ocean,+++</li>
+				<li data-fragment-index="4" class="fragment">AMI (or equivalent) available for AWS &amp; other</li>
+			</ul>
+			<li data-fragment-index="5" class="fragment">DevOps Tools</li>
+			<ul>
+				<li data-fragment-index="5" class="fragment">Integrations with Chef, Puppet, Jenkins, Travis, Salt, Ansible +++</li>
+			</ul>
+			<li data-fragment-index="6" class="fragment">Orchestration tools</li>
+			<ul>
+				<li data-fragment-index="6" class="fragment">Mesos, Heat, ++</li>
+				<li data-fragment-index="6" class="fragment">Shipyard &amp; others purpose built for Docker</li>
+			</ul>
+			<li data-fragment-index="7" class="fragment">Applications</li>
+			<ul>
+				<li data-fragment-index="7" class="fragment">1000’s of Dockerized applications available at index.docker.io</li>
+			</ul>
+		</ul>
+	</font>
+</section>
+
+<section>
+	<h2>Docker Futures</h2>
+	<ul style="font-size: 34px; line-height: 1.1em; text-align: left; width:95%;">
+		<img style="float:right;" src="docker-img/docker-futures.png"/>
+		<li>Docker 0.7 (current release)</li>
+		<ul>
+			<li>Fedora compatibility</li>
+			<li>Reduce kernel dependencies</li>
+			<li>Device mapper</li>
+			<li>Container linking</li>
+		</ul>
+		<li>Docker 0.8 (Dec)</li>
+		<ul>
+			<li>Shrink &nbsp;and stabilize Core</li>
+			<li>Provide stable, pluggable API</li>
+			<li>RHEL compatibility</li>
+			<li>Nested containers</li>
+			<li>Beam: Introspection API based on Redis</li>
+			<li>Expand snapshot management features for data volumes</li>
+			<li>Will consider this “production ready”</li>
+		</ul>
+		<li>Docker 0.9 (Jan)</li>
+		<li>Docker 1.0 (Feb)</li>
+		<ul>
+			<li>Will offer support for this product</li>
+		</ul>
+	</ul>
+</section>
+
+<section>
+	<h2>Want to Learn More?</h2>
+	<ul>
+		<li><a href="http://www.docker.io/">www.docker.io</a></li>
+		<ul>
+			<li>Documentation</li>
+			<li>Getting started (tutorial, installation, guide, etc)</li>
+			<li>Introductory <a href="http://www.docker.io/the-whole-story/">whitepaper</a></li>
+		</ul>
+		<li>Github: <a href="http://github.com/dotcloud/docker">dotcloud/docker</a></li>
+		<li>IRC: freenode #docker</li>
+		<li>Google Group: <a href="https://groups.google.com/forum/#!forum/docker-user">docker-user</a></li>
+		<li>Twitter: <a href="http://twitter.com/docker">@docker</a></li>
+		<li>Meetups: <a href="http://www.docker.io/meetups">www.docker.io/meetups</a></li>
+	</ul>
+</section>
+
+</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+
+				width: 1366,
+				height: 768,
+				margin: 0.1,
+				minScale: 0.2,
+				maxScale: 1.2,
+
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

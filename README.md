@@ -8,7 +8,7 @@ from [Docker Slideshare](http://www.slideshare.net/dotCloud) materials.
 
 Thanks to everyone at Docker, Inc for all the great work they are doing!
 
-[![ScreenShot](screenshot.png?raw=true)](http://pointful.github.io/docker-intro/)
+[![ScreenShot](screenshot.png?raw=true)](http://disney.github.io/docker-training/)
 
-### [View Presentation](http://disney.github.io/docker-intro/)
-### [Printable Slides (Chrome Only)](http://disney.github.io/docker-intro/?print-pdf)
+### [View Presentation](http://disney.github.io/docker-training/)
+### [Printable Slides (Chrome Only)](http://disney.github.io/docker-training/?print-pdf)
